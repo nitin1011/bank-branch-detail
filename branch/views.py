@@ -16,9 +16,12 @@ def branch_detail(request):
 	'''
 	Fetch the detail of branch using its ifsc code
 	'''
-
+                
 	ifsc = request.GET.get('ifsc')					# take input from url
-	branch = Branch.objects.get(ifsc=ifsc)			# fetch data from the branch table 
+	try:
+		branch = Branch.objects.get(ifsc=ifsc)			# fetch data from the branch table 
+	except:
+		return Response(data={})
 	serial = BranchDetailSerializer(branch)			# convert output into JSON formate
 	return Response(data=serial.data)				# return response
 
@@ -31,8 +34,11 @@ def branch_all(request):
 	'''
 
 	bank_name = request.GET.get('bank_name')						# take bank name input from url 
-	city = request.GET.get('city')									# take city input from url
-	bank = Bank.objects.get(name=bank_name)							# fetch bank detail from bank table
-	branch = Branch.objects.filter(bank_id=bank.bank_id, city=city)	# fetch branch detail from branch table
+	city = request.GET.get('city')								# take city input from url
+	try:
+		bank = Bank.objects.get(name=bank_name)							# fetch bank detail from bank table
+		branch = Branch.objects.filter(bank_id=bank.bank_id, city=city)	# fetch branch detail from branch table
+	except:
+		return Response(data={})
 	serial = BranchDetailSerializer(branch, many=True)				# convert output into JSON formate
 	return Response(data=serial.data)								# return response
