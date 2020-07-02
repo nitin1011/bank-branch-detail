@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Branch Detail</title>
+
+    <style type="text/css">
+        body{
+    background-color: #1B2024;
+}
+.login{
+    color:white;
+    margin: 0;
+  position: absolute;
+  top: 25%;
+  left: 15%;
+  -ms-transform: translate(-25%, -25%);
+  transform: translate(-25%, -25%);
+  padding: 80px;
+  background-color: #191919;
+  text-align: center;
+}
+.branch{
+    color:white;
+    margin: 0;
+  position: absolute;
+  top: 25%;
+  left: 65%;
+  -ms-transform: translate(-25%, -25%);
+  transform: translate(-25%, -25%);
+  padding: 80px;
+  background-color: #191919;
+  text-align: center;
+}
+p{
+    font-size: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 20px; 
+}
+input{
+    border: 3px solid blue;
+    border-radius: 20px;
+    height: 35px;
+    width: 350px;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+button{
+    border-radius: 15px;
+    border: 3px solid rgba(24, 211, 24, 0.568);
+    height: 45px;
+    width: 120px;
+    margin-top: 30px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+.submit:hover{
+    background-color: rgba(24, 211, 24, 0.568);
+}
+
+    </style>>
+
+</head>
+<body>
+<form method='GET' action="{% url 'branch_detail' %}">
+    <div class="branch">
+        <p>Branch Detail</p>
+        <input type="text" name='ifsc' placeholder="IFSC" required><br>
+        <button class="submit" type="submit">Submit</button><br>
+    </div>
+   </form>
+   <form method='GET' action="{% url 'branch_all' %}">
+    <div class="login">
+        <p>Find all Branches</p>
+        <input type="text" name='bank_name' placeholder="Bank Name" required><br>
+        <input type="text" name='city' placeholder="City" required><br>
+        <button class="submit" type="submit">Submit</button><br>
+    </div>
+    </form>
+</body>
+</html>
